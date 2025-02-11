@@ -13,16 +13,16 @@ userInput = prompt('가위, 바위, 보!');
 
 // 입력한 값이 가위, 바위, 보 중 하나라면 통과하는데, 잘못된 철자나 묵, 찌, 빠 등이라면 '가위, 바위, 보 중 하나를 입력해야 합니다!'를 출력하는 alert이 나올 수 있도록 조건문을 작성하시오.
 
-if (userInput !== SCISSORS && userInput !== ROCK && userInput !== PAPER) console.log('가위, 바위, 보 중 하나를 입력해야 합니다!') 
-else {
-  // 이 부분이 유효성 검사를 통과한 부분이니
-  // 나머지 정상 실행된 로직을 작성하도록 하는 편
+// if (userInput !== SCISSORS && userInput !== ROCK && userInput !== PAPER) console.log('가위, 바위, 보 중 하나를 입력해야 합니다!') 
+// else {
+//   // 이 부분이 유효성 검사를 통과한 부분이니
+//   // 나머지 정상 실행된 로직을 작성하도록 하는 편
 
-  if (randomNum < 0.33) comInput = SCISSORS;
-  else if (randomNum < 0.66) comInput = ROCK;
-  else comInput = PAPER;
+//   if (randomNum < 0.33) comInput = SCISSORS;
+//   else if (randomNum < 0.66) comInput = ROCK;
+//   else comInput = PAPER;
   
-  console.log(comInput);
+//   console.log(comInput);
 
   // userInput을 기준으로 작성하겠습니다.
   if (userInput === SCISSORS) {
@@ -62,6 +62,57 @@ else {
       alert(`컴퓨터 : ${comInput} - 컴퓨터와 비겼습니다.`)
     }
   }
-}
+
 
 // 개선안 : 상수를 활용 ctrl + h사용하면 대치 가능하답니다.
+
+// switch 개선 부분
+if (randomNum < 0.33) comInput = SCISSORS;
+else if (randomNum < 0.66) comInput = ROCK;
+else comInput = PAPER;
+
+console.log(comInput);
+
+switch(userInput) {
+  case SCISSORS:
+    switch(comInput) {
+      case SCISSORS:
+        alert(`컴퓨터 : ${comInput} - 컴퓨터와 비겼습니다.`);
+        break;
+      case ROCK:
+        alert(`컴퓨터 : ${comInput} - 컴퓨터가 이겼습니다.`);
+        break;
+      case PAPER:
+        alert(`컴퓨터 : ${comInput} - 컴퓨터를 이겼습니다.`);
+        break;
+    }
+    break;
+  case ROCK:
+    switch(comInput) {
+      case SCISSORS:
+        alert(`컴퓨터 : ${comInput} - 컴퓨터를 이겼습니다.`);
+        break;
+      case ROCK:
+        alert(`컴퓨터 : ${comInput} - 컴퓨터와 비겼습니다.`);
+        break;
+      case PAPER:
+        alert(`컴퓨터 : ${comInput} - 컴퓨터가 이겼습니다.`);
+        break;
+    }
+    break;
+  case PAPER:
+    switch(comInput) {
+      case SCISSORS:
+        alert(`컴퓨터 : ${comInput} - 컴퓨터가 이겼습니다.`);
+        break;
+      case ROCK:
+        alert(`컴퓨터 : ${comInput} - 컴퓨터를 이겼습니다.`);
+        break;
+      case PAPER:
+        alert(`컴퓨터 : ${comInput} - 컴퓨터와 비겼습니다.`);
+        break;
+    }
+    break;
+  default:
+    alert('가위, 바위, 보 중에서 선택하셔야 합니다.');
+}
